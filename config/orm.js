@@ -19,7 +19,17 @@ var orm = {
             cb(res);
         });
     },
-    updateOne: function(){
-
+    updateOne: function(col, val, id, cb){
+        var queryString = "UPDATE burgers SET" + col;
+        queryString += " = " + val;
+        queryString += " WHERE ID = " + id;
+        connection.query(queryString, function(err, res){
+            if (err) {
+                throw err;
+            }
+            cb(res);
+        });
     }
 }
+
+module.exports = orm;
